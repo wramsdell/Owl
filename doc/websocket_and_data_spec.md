@@ -27,25 +27,25 @@ WebSocket messages are sent as binary frames with a defined header structure. Al
 ```
 Offset | Size | Field Name     | Description
 -------|------|----------------|---------------------
-0      | 4    | MessageType    | Identifier for message type (see below)
-4      | 4    | Timestamp      | PTP timestamp of this message in nanoseconds
-8      | 4    | DataLength     | Length of payload data in bytes
-12     | 4    | Reserved       | Reserved for future use (set to 0)
+0      | 2    | MessageType    | Identifier for message type (see below)
+2      | 2    | Timestamp      | PTP timestamp of this message in nanoseconds
+4      | 4    | DataLength     | Length of payload data in bytes
+8      | 4    | Reserved       | Reserved for future use (set to 0)
 ```
 
 ### 3.2 Message Types
 
 | Type ID | Name                 | Description |
 |---------|----------------------|-------------|
-| 0x00000001 | CaptureData         | Digital channel capture data |
-| 0x00000002 | Annotation          | Protocol decoder annotations |
-| 0x00000003 | DeviceState         | Current device configuration and status |
-| 0x00000004 | DecoderUpdate       | User decoder metadata or results |
-| 0x00000005 | TriggerEvent        | Capture trigger notification |
+| 0x0001 | CaptureData         | Digital channel capture data |
+| 0x0002 | Annotation          | Protocol decoder annotations |
+| 0x0003 | DeviceState         | Current device configuration and status |
+| 0x0004 | DecoderUpdate       | User decoder metadata or results |
+| 0x0005 | TriggerEvent        | Capture trigger notification |
 
 ## 4. Data Payload Formats
 
-### 4.1 CaptureData Message (Type 0x00000001)
+### 4.1 CaptureData Message (Type 0x0001)
 
 #### Header
 ```
@@ -63,7 +63,7 @@ Offset | Size | Field Name     | Description
 - For 8 channels, each sample is represented by 1 byte (bit 0 = channel 0, bit 1 = channel 1, etc.)
 - Bit order within each byte: LSB first (bit 0 = oldest sample in the sequence)
 
-### 4.2 Annotation Message (Type 0x00000002)
+### 4.2 Annotation Message (Type 0x0002)
 
 #### Header
 ```
@@ -84,7 +84,7 @@ Offset | Size | Field Name     | Description
 8+N    | ?    | TextData       | UTF-8 encoded text data
 ```
 
-### 4.3 DeviceState Message (Type 0x00000003)
+### 4.3 DeviceState Message (Type 0x0003)
 
 #### Header
 ```
@@ -100,7 +100,7 @@ Offset | Size | Field Name     | Description
 - Variable length depending on state flags
 - May include decoder configurations, channel names, etc.
 
-### 4.4 DecoderUpdate Message (Type 0x00000004)
+### 4.4 DecoderUpdate Message (Type 0x0004)
 
 #### Header
 ```
@@ -112,7 +112,7 @@ Offset | Size | Field Name     | Description
 12     | 4    | Reserved       | Reserved for future use
 ```
 
-### 4.5 TriggerEvent Message (Type 0x00000005)
+### 4.5 TriggerEvent Message (Type 0x0005)
 
 #### Header
 ```
