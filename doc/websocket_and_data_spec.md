@@ -28,9 +28,9 @@ WebSocket messages are sent as binary frames with a defined header structure. Al
 Offset | Size | Field Name     | Description
 -------|------|----------------|---------------------
 0      | 2    | MessageType    | Identifier for message type (see below)
-2      | 2    | Timestamp      | PTP timestamp of this message in nanoseconds
-4      | 4    | DataLength     | Length of payload data in bytes
-8      | 4    | Reserved       | Reserved for future use (set to 0)
+2      | 2    | DataLength     | Length of payload data in bytes
+4      | 8    | Timestamp      | PTP timestamp of this message in nanoseconds
+12     | 4    | Reserved       | Reserved for future use (set to 0)
 ```
 
 ### 3.2 Message Types
