@@ -1,0 +1,20 @@
+# Owl firmware west manifest - Zephyr RTOS project for RP2350 dual-core
+# Targets Raspberry Pi Pico 2 with Mikroe Eth Click (LAN9250)
+# Core 0: capture/bare-metal or cooperative scheduler
+# Core 1: Zephyr RTOS comms
+
+manifest:
+  self:
+    west-version: [1, 0, 0]
+
+  projects:
+    - name: zephyr
+      url: https://github.com/zephyrproject-rtos/zephyr
+      version: v4.0.0
+      clone-depth: 1
+      import:
+        # Import all other repos in the Zephyr tree automatically.
+
+  remotes:
+    - name: zephyrproject
+      url-base: https://github.com/zephyrproject-rtos
